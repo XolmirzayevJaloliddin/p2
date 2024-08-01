@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contact %}active{% endblock contact %}
+{% block banner %}
+<div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3>Biz bilan aloqa</h3>
+          <span class="breadcrumb"><a href="{% url 'home' %}">Bosh sahifa</a>  >  Aloqa</span>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock banner %}
+{% block content %}
+<div class="contact-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="left-text">
+            <div class="section-heading">
+              <h6>Aloqa</h6>
+              <h2>Assalomu alaykum!</h2>
+            </div>
+            <p>Agar bizga qandaydir savol yoki taklifingiz bo'lsa bemalol qoldirishingiz mumkin. Ishchi jamoamiz bir zumda o'rganib siz bilan aloqaga chiqadi.</p>
+            <ul>
+              <li><span>Manzil</span> Amir Temur ko'chasi, Toshkent, O'zbekiston</li>
+              <li><span>Telefon</span> +998 77 777 30 30</li>
+              <li><span>Email</span> aloqa@livebooks.uz</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="right-content">
+            <div class="row">
+              <div class="col-lg-12">
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23985.843441122495!2d69.16658495403259!3d41.28208916738864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2s!4v1722263281315!5m2!1sru!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <form id="contact-form" action="" method="post">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="name" name="name" id="name" placeholder="Ismingiz..." autocomplete="on" required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="surname" name="surname" id="surname" placeholder="Familiyangiz..." autocomplete="on" required>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="E-mail manzilingiz..." required="">
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-6">
+                      <fieldset>
+                        <input type="subject" name="subject" id="subject" placeholder="Mavzu..." autocomplete="on" >
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <textarea name="message" id="message" placeholder="Xabaringiz"></textarea>
+                      </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="orange-button">Yuborish</button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+{% endblock content %}

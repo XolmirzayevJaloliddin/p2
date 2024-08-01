@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% load static  %}
+{% block index %}active{% endblock index %}
+{% block banner %}
+<div class="row">
+    <div class="col-lg-6 align-self-center">
+      <div class="caption header-text">
+        <h6>Welcome to Livebooks.uz</h6>
+        <h2>Siz qidirgan kitob do'koni</h2>
+        <p>Bizning saytimizda o'zingizga yoqqan kitoblarni hamyonbop narxlarda topishingiz va sotib olishingiz mumkin.</p>
+        <div class="search-input">
+          <form id="search" action="#">
+            <input type="text" placeholder="Nima qidirmoqchisiz?" id='searchText' name="searchKeyword" onkeypress="handle" />
+            {% comment %} <button role="button">Search Now</button> {% endcomment %}
+          </form>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock banner %}
+{% block content %}
+    <div class="col-lg-4 offset-lg-2">
+      <div class="right-image">
+        <img src="{% static 'assets/images/romeo.jpg' %}" alt="">
+        <span class="price">60000 uzs</span>
+        {% comment %} <span class="offer">-40%</span> {% endcomment %}
+      </div>
+    </div>
+<div class="features">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <a href="#">
+            <div class="item">
+              <div class="image">
+                <img src="{% static 'assets/images/arzon.jpg' %} " alt="" style="max-width: 44px;">
+              </div>
+              <h4>Arzon</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <a href="#">
+            <div class="item">
+              <div class="image">
+                <img src="{% static 'assets/images/deliver.png' %}" alt="" style="max-width: 44px;">
+              </div>
+              <h4>Tezkor yetkazib berish</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <a href="#">
+            <div class="item">
+              <div class="image">
+                <img src="{% static 'assets/images/qulay.png' %}" alt="" style="max-width: 44px;">
+              </div>
+              <h4>Qulay ko'rinish</h4>
+            </div>
+          </a>
+        </div>
+        <div class="col-lg-3 col-md-6">
+          <a href="#">
+            <div class="item">
+              <div class="image">
+                <img src="{% static 'assets/images/bank.png' %}" alt="" style="max-width: 44px;">
+              </div>
+              <h4>Bo'lib to'lash</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section trending">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>Trend</h6>
+            <h2>Trenddagi kitoblar</h2>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="main-button">
+            <a href="{% url 'shop' %}">Barchasi</a>
+          </div>
+        </div>
+        {% for book in on_trend %}
+        <div class="col-lg-3 col-md-6">
+          <div class="item">
+            <div class="thumb">
+              <a href="product-details.html"><img src="{{book.image.url}}" alt=""></a>
+              <span class="price">UZS {{ book.price }}</span>
+            </div>
+            <div class="down-content">
+              <span class="category">{% for genre in book.genres.all %}{{ genre.name }}{% endfor %}</span>
+              <h4>{{ book.title }}</h4>
+              <a href="product-details.html"><i class="fa fa-shopping-bag"></i></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+  <div class="section most-played">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>TOP KITOBLAR</h6>
+            <h2>ENG KO'P O'QILGAN</h2>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="main-button">
+            <a href="{% url 'shop' %} ">Barchasi</a>
+          </div>
+        </div>
+        {% for book in top_books %}
+        <div class="col-lg-2 col-md-6 col-sm-6">
+          <div class="item">
+            <div class="thumb">
+              <a href="product-details.html"><img src="{{ book.image.url }}" alt=""></a>
+            </div>
+            <div class="down-content">
+                <span class="category">{% for genre in book.genres_set.all %}{{ genre.name }}{% endfor  %}</span>
+                <h4>{{ book.title }}</h4>
+                <a href="product-details.html">Batafsil</a>
+            </div>
+          </div>  
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="section categories">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <div class="section-heading">
+            <h6>Yo'nalishlar</h6>
+            <h2>Barcha Janrlar</h2>
+          </div>
+        </div>
+        {% for genre in genres %}
+        <div class="col-lg col-sm-6 col-xs-12">
+          <div class="item">
+            <h4>{{ genre.name }}</h4>
+            <div class="thumb">
+              <a href="product-details.html"><img src="assets/images/categories-01.jpg" alt=""></a>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  
+  <div class="section cta">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="shop">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <h6>Our Shop</h6>
+                  <h2>Go Pre-Order Buy & Get Best <em>Prices</em> For You!</h2>
+                </div>
+                <p>Lorem ipsum dolor consectetur adipiscing, sed do eiusmod tempor incididunt.</p>
+                <div class="main-button">
+                  <a href="shop.html">Shop Now</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-2 align-self-end">
+          <div class="subscribe">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <h6>NEWSLETTER</h6>
+                  <h2>Get Up To $100 Off Just Buy <em>Subscribe</em> Newsletter!</h2>
+                </div>
+                <div class="search-input">
+                  <form id="subscribe" action="#">
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Your email...">
+                    <button type="submit">Subscribe Now</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
